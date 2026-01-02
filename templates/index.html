@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Proxy Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a2e1d 0%, #1a5c3a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .region-display {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 2px solid #4CAF50;
+            font-size: 24px;
+            font-weight: 600;
+            color: #4CAF50;
+            text-align: center;
+            min-width: 120px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 60vh;
+            margin: 20px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .start-button {
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .start-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.6);
+            background: linear-gradient(45deg, #2E7D32, #1B5E20);
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4CAF50;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .status-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #8BC34A;
+        }
+        
+        .status-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .status-online {
+            color: #4CAF50;
+        }
+        
+        /* Videos Section */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 20px; }
+            .region-display { font-size: 20px; min-width: 100px; }
+            .status-grid { grid-template-columns: 1fr; }
+            .videos-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-bolt" style="color: #4CAF50; font-size: 28px;"></i>
+                <span class="logo-text">NrProxy</span>
+            </div>
+            <div class="region-display" id="regionDisplay">{{ region }}</div>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Free Fire Proxy</h1>
+                <p class="hero-subtitle">High Speed Gaming Servers</p>
+                <a href="/download" class="start-button">Let's Start</a>
+            </div>
+        </div>
+        
+        <!-- Timeline Section -->
+        <div class="timeline-section">
+            <h2 class="section-title">Server Timeline</h2>
+            
+            <!-- Server Status -->
+            <div class="status-grid">
+                <div class="status-card">
+                    <h3 class="status-title">Server Status</h3>
+                    <div class="status-value status-online">{{ server_status.status }}</div>
+                </div>
+                <div class="status-card">
+                    <h3 class="status-title">Active Players</h3>
+                    <div class="status-value">{{ server_status.players }}</div>
+                </div>
+                <div class="status-card">
+                    <h3 class="status-title">Server Uptime</h3>
+                    <div class="status-value">{{ server_status.uptime }}</div>
+                </div>
+            </div>
+            
+            <!-- Videos Section -->
+            <h2 class="section-title">Tutorial Videos</h2>
+            <div class="videos-grid">
+                {% for video in videos %}
+                <div class="video-card">
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">{{ video.title }}</h3>
+                        <div class="video-frame" style="display: none;">
+                            <iframe width="100%" height="200" src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <button onclick="playVideo(this)" class="start-button" style="padding: 10px 20px; font-size: 14px;">
+                            <i class="fas fa-play"></i> Play Video
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Free Fire Proxy Server. All rights reserved.</p>
+            <p>This is not an official Free Fire/Garena product.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-update region every second
+        function updateRegion() {
+            fetch('/api/region')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('regionDisplay').textContent = data.region;
+                });
+        }
+        
+        // Update server status
+        function updateStatus() {
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    // You can update status elements here if needed
+                });
+        }
+        
+        // Play video function
+        function playVideo(button) {
+            const videoCard = button.closest('.video-card');
+            const thumbnail = videoCard.querySelector('.video-thumbnail');
+            const videoFrame = videoCard.querySelector('.video-frame');
+            
+            thumbnail.style.display = 'none';
+            videoFrame.style.display = 'block';
+            button.style.display = 'none';
+        }
+        
+        // Start auto-updates
+        setInterval(updateRegion, 1000);
+        setInterval(updateStatus, 5000);
+        
+        // Initial updates
+        updateRegion();
+        updateStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a2e1d 0%, #1a5c3a 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .login-title {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #2E7D32;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="login-title">Admin Login</h1>
+        <form id="loginForm" method="POST">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-input" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+            <div class="error-message" id="errorMessage">
+                Invalid username or password
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('/admin/login', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else {
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

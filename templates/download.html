@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - Free Fire Proxy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .download-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        .download-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        
+        .theme-toggle {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .theme-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        /* Background Image */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        /* Download Section */
+        .download-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .download-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .download-subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .download-note {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        
+        .activation-code {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4CAF50;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 3px dashed #4CAF50;
+            letter-spacing: 3px;
+        }
+        
+        .warning-text {
+            color: #ff6b6b;
+            font-size: 16px;
+            margin: 10px 0 40px 0;
+        }
+        
+        .android-only {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+        
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.5);
+            background: #2E7D32;
+        }
+        
+        .download-button i {
+            font-size: 28px;
+        }
+        
+        /* Configuration Section */
+        .config-section {
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+        
+        .config-title {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .config-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .config-input {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        .config-input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        
+        .config-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .config-button:hover {
+            background: #1976D2;
+        }
+        
+        .qr-code {
+            text-align: center;
+        }
+        
+        .qr-code img {
+            max-width: 250px;
+            border: 10px solid white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-top: 2px solid #4CAF50;
+            padding: 15px 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4CAF50;
+        }
+        
+        .nav-ip {
+            font-size: 18px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .download-title { font-size: 36px; }
+            .download-subtitle { font-size: 20px; }
+            .activation-code { font-size: 24px; }
+            .config-grid { grid-template-columns: 1fr; }
+            .nav-content { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="download-header">
+            <div class="download-logo">NrProxy</div>
+            <div class="theme-toggle">
+                <button class="theme-btn active" onclick="changeTheme('light')">Light</button>
+                <button class="theme-btn" onclick="changeTheme('dark')">Dark</button>
+            </div>
+        </div>
+        
+        <!-- Download Section -->
+        <div class="download-section">
+            <h1 class="download-title">Download</h1>
+            <h2 class="download-subtitle">APK Client</h2>
+            <p class="download-note">Download Now And Play In Proxy Server</p>
+            
+            <h2 class="download-subtitle">Congratulations!</h2>
+            <div class="activation-code">{{ activation_code }}</div>
+            <p class="warning-text">Please Don't Share this Activation Code</p>
+            
+            <div class="android-only">For Android Only</div>
+            <br>
+            
+            <a href="{{ download_link }}" class="download-button" id="downloadBtn">
+                <i class="fab fa-android"></i>
+                <span>Download APK</span>
+            </a>
+        </div>
+        
+        <!-- Configuration Section -->
+        <div class="config-section">
+            <h2 class="config-title">G Configuration</h2>
+            <div class="config-grid">
+                <div class="config-form">
+                    <input type="text" class="config-input" id="proxyIp" 
+                           value="{{ proxy_config.ip }}" placeholder="Proxy IP Address">
+                    <input type="text" class="config-input" id="proxyPort" 
+                           value="{{ proxy_config.port }}" placeholder="Proxy Port">
+                    <button class="config-button" onclick="saveConfig()">
+                        <i class="fas fa-save"></i> Save Configuration
+                    </button>
+                </div>
+                <div class="qr-code">
+                    <img src="/qr-code" alt="QR Code">
+                    <p style="margin-top: 15px; color: #666;">Scan to configure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-content">
+            <div class="nav-title">G Configuration</div>
+            <div class="nav-ip">IP: {{ proxy_config.ip }} | Port: {{ proxy_config.port }}</div>
+        </div>
+    </div>
+    
+    <script>
+        // Theme switcher
+        function changeTheme(theme) {
+            const body = document.body;
+            const buttons = document.querySelectorAll('.theme-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (theme === 'dark') {
+                body.style.backgroundColor = '#1a1a1a';
+                body.style.color = 'white';
+            } else {
+                body.style.backgroundColor = 'white';
+                body.style.color = '#333';
+            }
+        }
+        
+        // Save configuration
+        function saveConfig() {
+            const ip = document.getElementById('proxyIp').value;
+            const port = document.getElementById('proxyPort').value;
+            
+            // In production, implement actual save to Firebase
+            alert('Configuration saved! (IP: ' + ip + ', Port: ' + port + ')');
+        }
+        
+        // Handle download click
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            // You can add analytics or confirmation here
+            console.log('Download started');
+        });
+    </script>
+</body>
+</html>
